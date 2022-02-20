@@ -1,7 +1,8 @@
 import '../index.css';
-import { sendInfo, addNewCard, getAppInfo, updateAvatarUser } from './api';
+import { api } from './api-oop';
 import { validationConfig, enableValidation, disableButton } from './validate';
 import { popupImg, createCard, renderCard, containerCards } from './card';
+import { Card } from './card-oop';
 import { profileEditPopup, popupAdd, popupFormAdd, popupAvatar, popupDeleteCard, openPopup, closePopup } from './modal';
 
 const cardsContainer = document.querySelector('.cards');
@@ -34,7 +35,8 @@ const popupAvatarBtnSave = popupAvatar.querySelector('#save-avatar-btn');
 let meId;
 let idCard;
 
-getAppInfo()
+api.getAppInfo()
+// getAppInfo()
   .then(([user, cards]) => {
     changeElementTextContent(profileName, user.name); 
     changeElementTextContent(profileCareer, user.about);
@@ -50,8 +52,20 @@ enableValidation(validationConfig);
 
 function renderAllCards(arrCard) {
   arrCard.reverse().forEach(element => {
-    const newCard = createCard(element.name, element.link, element.likes.length, element.owner._id, element.likes, element._id);
-    renderCard(newCard, cardsContainer);
+    const data = {
+      name:element.name, 
+      link:element.link, 
+      likesCount:element.likes.length, 
+      ownerId:element.owner._id, 
+      likes:element.likes, 
+      card:element._id}
+      console.log(data)
+    const card = new Card({data}, meId)
+    // console.log(card.renderCard())
+    // card.renderCard()
+    card.renderCard(data, cardsContainer);
+    card.createCard(data, cardsContainer);
+    
   });
 }
 
@@ -75,7 +89,8 @@ function handleAvatarSubmit (evt) {
   
   const avatarLink = imgAvatarField.value;
 
-  updateAvatarUser(avatarLink)
+  api.updateAvatarUser(avatarLink)
+  //updateAvatarUser(avatarLink)
     .then(() => {
       changeAvatar(profileAvatarImg, avatarLink);
       closePopup(popupAvatar);
@@ -88,7 +103,8 @@ function handleAvatarSubmit (evt) {
 function handleUserInfoFormSubmit (evt) {
   evt.preventDefault();
 
-  sendInfo(userNameField.value, userCareerField.value)
+  api.sendInfo(userNameField.value, userCareerField.value)
+  //sendInfo(userNameField.value, userCareerField.value)
     .then((userInfo) => {
       profileNameContent.textContent = userInfo.name;
       profileCareerContent.textContent = userInfo.about;
@@ -102,7 +118,8 @@ function handleUserInfoFormSubmit (evt) {
 function handleCardInfoFormSubmit (evt) {
   evt.preventDefault();
 
-  addNewCard(imgNameField.value, imgLinkField.value)
+  api.addNewCard(imgNameField.value, imgLinkField.value)
+  //addNewCard(imgNameField.value, imgLinkField.value)
     .then((card) => {
       const newCard = createCard(card.name, card.link, card.likes.length, card.owner._id, card.likes, card._id);
       renderCard(newCard, containerCards);

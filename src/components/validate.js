@@ -89,4 +89,4 @@ function enableValidation ({formSelector, ...rest}) {
     });
 };
 
-export { validationConfig, enableValidation, disableButton };
+export { validationConfig, enableValidation, disableButton }; 

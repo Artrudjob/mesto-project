@@ -28,9 +28,6 @@ const getCards = () => {
     .then(res => checkResponse(res));
 }
 
-const getAppInfo = () => {
-    return Promise.all([getInfo(), getCards()]);
-}
 
 const sendInfo = (myName, aboutMe) => {
     return fetch (`${config.baseUrl}users/me`, {
