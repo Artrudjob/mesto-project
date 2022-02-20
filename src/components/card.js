@@ -1,6 +1,5 @@
 import { api } from "./api-oop";
 import { closePopup, openPopup, popupDeleteCard } from "./modal";
-import { deleteUserCard, addLikeCard, removeLikeCard } from "./api";
 import { meId } from "./index";
 
 const popupImg = document.querySelector('#popup-img');

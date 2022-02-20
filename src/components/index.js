@@ -1,9 +1,8 @@
 import '../index.css';
 import { api } from './api-oop';
-
-import { sendInfo, addNewCard, getAppInfo, updateAvatarUser } from './api';
 import { validationConfig, enableValidation, disableButton } from './validate';
 import { popupImg, createCard, renderCard, containerCards } from './card';
+import { Card } from './card-oop';
 import { profileEditPopup, popupAdd, popupFormAdd, popupAvatar, popupDeleteCard, openPopup, closePopup } from './modal';
 
 const cardsContainer = document.querySelector('.cards');
@@ -53,8 +52,20 @@ enableValidation(validationConfig);
 
 function renderAllCards(arrCard) {
   arrCard.reverse().forEach(element => {
-    const newCard = createCard(element.name, element.link, element.likes.length, element.owner._id, element.likes, element._id);
-    renderCard(newCard, cardsContainer);
+    const data = {
+      name:element.name, 
+      link:element.link, 
+      likesCount:element.likes.length, 
+      ownerId:element.owner._id, 
+      likes:element.likes, 
+      card:element._id}
+      console.log(data)
+    const card = new Card({data}, meId)
+    // console.log(card.renderCard())
+    // card.renderCard()
+    card.renderCard(data, cardsContainer);
+    card.createCard(data, cardsContainer);
+    
   });
 }
 

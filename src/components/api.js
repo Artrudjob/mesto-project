@@ -1,4 +1,4 @@
-/* const config = {
+const config = {
     baseUrl: 'https://nomoreparties.co/v1/plus-cohort-6/',
     headers: {
         authorization: 'c6ea2481-28ed-4e6a-9bbe-85a531661bf0',
@@ -28,9 +28,6 @@ const getCards = () => {
     .then(res => checkResponse(res));
 }
 
-const getAppInfo = () => {
-    return Promise.all([getInfo(), getCards()]);
-}
 
 const sendInfo = (myName, aboutMe) => {
     return fetch (`${config.baseUrl}users/me`, {
@@ -91,4 +88,4 @@ const updateAvatarUser = (imgLink) => {
     .then(res => checkResponse(res));
 }
 
-export { getInfo, getCards, sendInfo, getAppInfo, addNewCard, deleteUserCard, addLikeCard, removeLikeCard, updateAvatarUser };  */
+export { getInfo, getCards, sendInfo, getAppInfo, addNewCard, deleteUserCard, addLikeCard, removeLikeCard, updateAvatarUser };
