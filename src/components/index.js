@@ -1,6 +1,9 @@
 import '../index.css';
+import { api } from './api-oop';
+import { formValidator, validationConfig } from './validate-oop';
+
 import { sendInfo, addNewCard, getAppInfo, updateAvatarUser } from './api';
-import { validationConfig, enableValidation, disableButton } from './validate';
+//import { validationConfig, enableValidation, disableButton } from './validate';
 import { popupImg, createCard, renderCard, containerCards } from './card';
 import { profileEditPopup, popupAdd, popupFormAdd, popupAvatar, popupDeleteCard, openPopup, closePopup } from './modal';
 
@@ -34,7 +37,8 @@ const popupAvatarBtnSave = popupAvatar.querySelector('#save-avatar-btn');
 let meId;
 let idCard;
 
-getAppInfo()
+api.getAppInfo()
+// getAppInfo()
   .then(([user, cards]) => {
     changeElementTextContent(profileName, user.name); 
     changeElementTextContent(profileCareer, user.about);
@@ -45,8 +49,9 @@ getAppInfo()
     idCard = cards._id;
   })
   .catch(err => console.log(`Что-то пошло не так: ${err}`))
-
-enableValidation(validationConfig);
+  
+  formValidator.enableValidation();
+//enableValidation(validationConfig);
 
 function renderAllCards(arrCard) {
   arrCard.reverse().forEach(element => {
@@ -75,7 +80,8 @@ function handleAvatarSubmit (evt) {
   
   const avatarLink = imgAvatarField.value;
 
-  updateAvatarUser(avatarLink)
+  api.updateAvatarUser(avatarLink)
+  //updateAvatarUser(avatarLink)
     .then(() => {
       changeAvatar(profileAvatarImg, avatarLink);
       closePopup(popupAvatar);
@@ -88,7 +94,8 @@ function handleAvatarSubmit (evt) {
 function handleUserInfoFormSubmit (evt) {
   evt.preventDefault();
 
-  sendInfo(userNameField.value, userCareerField.value)
+  api.sendInfo(userNameField.value, userCareerField.value)
+  //sendInfo(userNameField.value, userCareerField.value)
     .then((userInfo) => {
       profileNameContent.textContent = userInfo.name;
       profileCareerContent.textContent = userInfo.about;
@@ -102,11 +109,14 @@ function handleUserInfoFormSubmit (evt) {
 function handleCardInfoFormSubmit (evt) {
   evt.preventDefault();
 
-  addNewCard(imgNameField.value, imgLinkField.value)
+  api.addNewCard(imgNameField.value, imgLinkField.value)
+  //addNewCard(imgNameField.value, imgLinkField.value)
     .then((card) => {
       const newCard = createCard(card.name, card.link, card.likes.length, card.owner._id, card.likes, card._id);
       renderCard(newCard, containerCards);
-      disableButton (popupBtnCreate, validationConfig.inactiveButtonClass);
+
+      formValidator.disableButton(popupBtnCreate);
+      //disableButton (popupBtnCreate, validationConfig.inactiveButtonClass);
       closePopup(popupAdd);
       popupFormAdd.reset(); 
     })

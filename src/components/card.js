@@ -1,3 +1,4 @@
+import { api } from "./api-oop";
 import { closePopup, openPopup, popupDeleteCard } from "./modal";
 import { deleteUserCard, addLikeCard, removeLikeCard } from "./api";
 import { meId } from "./index";
@@ -33,14 +34,16 @@ function createCard(name, link, likesCount, ownerId, likes, cardId) {
 
   function likedHeart() {    
       if (cardBtnHeart.classList.contains('card__heart_active')) {
-        removeLikeCard(cardId)
+        api.removeLikeCard(cardId)
+        //removeLikeCard(cardId)
           .then((result) => {
             cardLikes.textContent = result.likes.length;
             cardBtnHeart.classList.remove('card__heart_active');  
           }) 
           .catch(err => console.log(`Что-то пошло не так: ${err}`));
     } else {
-      addLikeCard(cardId)
+      api.addLikeCard(cardId)
+      //addLikeCard(cardId)
         .then((result) => {
           cardLikes.textContent = result.likes.length;
           cardBtnHeart.classList.add('card__heart_active');
@@ -73,7 +76,8 @@ function renderCard (cardTemplate, containerCards) {
 }
 
 function deleteCard(card) {
-  deleteUserCard(itemCardId)
+  api.deleteUserCard(itemCardId)
+  //deleteUserCard(itemCardId)
     .then(() => {
       closePopup(popupDeleteCard);
       card.remove(); 

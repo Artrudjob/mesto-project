@@ -20,19 +20,19 @@ class Api {
         return fetch(`${this._baseUrl}users/me`, {
             headers: this._headers
         })
-        .then(res => checkResponse(res));
+        .then(res => this._checkResponse(res));
     }
     
     getCards() {
-        getInfo();
+        this.getInfo();
         return fetch(`${this._baseUrl}cards`, {
             headers: this._headers
         })
-        .then(res => checkResponse(res));
+        .then(res => this._checkResponse(res));
     }
     
     getAppInfo() {
-        return Promise.all([getInfo(), getCards()]);
+        return Promise.all([this.getInfo(), this.getCards()]);
     }
     
     sendInfo(myName, aboutMe) {
@@ -44,7 +44,7 @@ class Api {
                 about: aboutMe
             })
         })
-        .then(res => checkResponse(res));
+        .then(res => this._checkResponse(res));
     }
     
     addNewCard(namePlace, placeLink) {
@@ -56,7 +56,7 @@ class Api {
                 link: placeLink
             })
         })
-        .then(res => checkResponse(res));
+        .then(res => this._checkResponse(res));
     }
     
     deleteUserCard(id) {
@@ -64,7 +64,7 @@ class Api {
             method: 'DELETE',
             headers: this._headers
         })
-        .then(res => checkResponse(res));
+        .then(res => this._checkResponse(res));
     }
     
     addLikeCard(id) {
@@ -72,7 +72,7 @@ class Api {
             method: 'PUT', 
             headers: this._headers
         })
-        .then(res => checkResponse(res));
+        .then(res => this._checkResponse(res));
     }
     
     removeLikeCard(id) {
@@ -91,7 +91,7 @@ class Api {
                 avatar: `${imgLink}`
             })
         })
-        .then(res => checkResponse(res));
+        .then(res => this._checkResponse(res));
     }
 }
   
@@ -103,4 +103,4 @@ const api = new Api({
     }
 }); 
 
-export { Api, api }
+export { api }

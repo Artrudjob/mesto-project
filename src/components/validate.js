@@ -1,4 +1,4 @@
-const validationConfig = {
+/* const validationConfig = {
     formSelector: '.popup__form',
     inputSelector: '.popup__edit',
     submitButtonSelector: '.popup__save-btn',
@@ -89,4 +89,4 @@ function enableValidation ({formSelector, ...rest}) {
     });
 };
 
-export { validationConfig, enableValidation, disableButton };
+export { validationConfig, enableValidation, disableButton }; */
