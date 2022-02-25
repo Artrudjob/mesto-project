@@ -1,10 +1,14 @@
 import '../index.css';
+import { api } from './api-oop';
+import { popupAvatar, popupProfileEdit, popupCardAdd, popupImg, popupDeleteCard } from './popup-oop';
+
 import { sendInfo, addNewCard, getAppInfo, updateAvatarUser } from './api';
 import { validationConfig, enableValidation, disableButton } from './validate';
-import { popupImg, createCard, renderCard, containerCards } from './card';
-import { profileEditPopup, popupAdd, popupFormAdd, popupAvatar, popupDeleteCard, openPopup, closePopup } from './modal';
+import { /*popupImg,*/ createCard, renderCard, containerCards } from './card';
+//import { /*profileEditPopup,*/ popupAdd, popupFormAdd, popupAvatar, popupDeleteCard, openPopup, closePopup } from './modal';
 
 const cardsContainer = document.querySelector('.cards');
+const profileEditPopup = document.querySelector('#popup-edit');
 const popupContainer = profileEditPopup.querySelector('.popup__container'); 
 const profileEdit = document.querySelector('.profile__edit');
 const profileAdd = document.querySelector('.profile__add');
@@ -13,10 +17,12 @@ const profileName = document.querySelector('.profile__name');
 const profileCareer = document.querySelector('.profile__career');
 const profileAvatarImg = document.querySelector('.profile__avatar');
 const popupExit = popupContainer.querySelector('.popup__exit');
-const closeAvatar = popupAvatar.querySelector('.popup__exit');
+const SectionPopupAvatar = document.querySelector('#popup-avatar');
+const closeAvatar = SectionPopupAvatar.querySelector('.popup__exit');
 const exitBtn = document.querySelector('#exit-button');
-const closeDelCard = popupDeleteCard.querySelector('.popup__exit');
-const popupFormAvatar = popupAvatar.querySelector('.popup__form');
+const popupDelCard = document.querySelector('#popup-delete-card');
+const closeDelCard = popupDelCard.querySelector('.popup__exit');
+const popupFormAvatar = SectionPopupAvatar.querySelector('.popup__form');
 const popupFormEdit = document.querySelector('#popup__form-id');
 const popupExitImg = document.querySelector('.popup__exit-img');
 const popupUserName = profileEditPopup.querySelector('#user-name-field');
@@ -27,14 +33,16 @@ const profileNameContent = document.querySelector('.profile__name');
 const profileCareerContent = document.querySelector('.profile__career');
 const imgNameField = document.querySelector('#img-name-field');
 const imgLinkField = document.querySelector('#img-link-field');
-const imgAvatarField = popupAvatar.querySelector('.popup__edit');
+const imgAvatarField = SectionPopupAvatar.querySelector('.popup__edit');
 const popupBtnCreate = document.querySelector('#create-button');
 const popupBtnSave = document.querySelector('#save-button');
-const popupAvatarBtnSave = popupAvatar.querySelector('#save-avatar-btn');
+const popupAvatarBtnSave = SectionPopupAvatar.querySelector('#save-avatar-btn');
+const popupFormAdd = document.querySelector('#popup-form-add');
 let meId;
 let idCard;
 
-getAppInfo()
+api.getAppInfo()
+// getAppInfo()
   .then(([user, cards]) => {
     changeElementTextContent(profileName, user.name); 
     changeElementTextContent(profileCareer, user.about);
@@ -75,10 +83,12 @@ function handleAvatarSubmit (evt) {
   
   const avatarLink = imgAvatarField.value;
 
-  updateAvatarUser(avatarLink)
+  api.updateAvatarUser(avatarLink)
+  //updateAvatarUser(avatarLink)
     .then(() => {
       changeAvatar(profileAvatarImg, avatarLink);
-      closePopup(popupAvatar);
+      popupAvatar.close();
+      //closePopup(popupAvatar);
     })
     .catch(err => console.log(`Что-то пошло не так: ${err}`))
     .finally(() => {popupAvatarBtnSave.textContent = 'Сохранить';}) 
@@ -88,11 +98,13 @@ function handleAvatarSubmit (evt) {
 function handleUserInfoFormSubmit (evt) {
   evt.preventDefault();
 
-  sendInfo(userNameField.value, userCareerField.value)
+  api.sendInfo(userNameField.value, userCareerField.value)
+  //sendInfo(userNameField.value, userCareerField.value)
     .then((userInfo) => {
       profileNameContent.textContent = userInfo.name;
       profileCareerContent.textContent = userInfo.about;
-      closePopup(profileEditPopup);
+      popupProfileEdit.close();
+      //closePopup(profileEditPopup);
     })
     .catch(err => console.log(`Что-то пошло не так: ${err}`))
     .finally(() => {popupBtnSave.textContent = 'Сохранить';});
@@ -102,12 +114,14 @@ function handleUserInfoFormSubmit (evt) {
 function handleCardInfoFormSubmit (evt) {
   evt.preventDefault();
 
-  addNewCard(imgNameField.value, imgLinkField.value)
+  api.addNewCard(imgNameField.value, imgLinkField.value)
+  //addNewCard(imgNameField.value, imgLinkField.value)
     .then((card) => {
       const newCard = createCard(card.name, card.link, card.likes.length, card.owner._id, card.likes, card._id);
       renderCard(newCard, containerCards);
       disableButton (popupBtnCreate, validationConfig.inactiveButtonClass);
-      closePopup(popupAdd);
+      popupCardAdd.close;
+      //closePopup(popupAdd);
       popupFormAdd.reset(); 
     })
     .catch(err => console.log(`Что-то пошло не так: ${err}`))
@@ -115,16 +129,16 @@ function handleCardInfoFormSubmit (evt) {
     popupBtnCreate.textContent = 'Создание...';  
 }
 
-profileAvatar.addEventListener('click', function() {openPopup(popupAvatar)});
-profileEdit.addEventListener('click', function() {openPopup(profileEditPopup)});
+profileAvatar.addEventListener('click', function() {/*openPopup(popupAvatar)*/popupAvatar.open()});
+profileEdit.addEventListener('click', function() {/*openPopup(profileEditPopup)*/popupProfileEdit.open()});
 profileEdit.addEventListener('click', fillEditForm);
-profileAdd.addEventListener('click', function() {openPopup(popupAdd)});
+profileAdd.addEventListener('click', function() {/*openPopup(popupAdd)*/popupCardAdd.open()});
 
-closeAvatar.addEventListener('click', function() {closePopup(popupAvatar)});
-popupExit.addEventListener('click', function() {closePopup(profileEditPopup)});
-exitBtn.addEventListener('click', function() {closePopup(popupAdd)});
-popupExitImg.addEventListener('click', function() {closePopup(popupImg)});
-closeDelCard.addEventListener('click', function() {closePopup(popupDeleteCard)});
+closeAvatar.addEventListener('click', function() {/*closePopup(popupAvatar)*/popupAvatar.close()});
+popupExit.addEventListener('click', function() {/*closePopup(profileEditPopup)*/popupProfileEdit.close()});
+exitBtn.addEventListener('click', function() {/*closePopup(popupAdd)*/popupCardAdd.close()});
+popupExitImg.addEventListener('click', function() {/*closePopup(popupImg)*/popupImg.close()});
+closeDelCard.addEventListener('click', function() {/*closePopup(popupDeleteCard)*/popupDeleteCard.close()});
 
 popupFormAvatar.addEventListener('submit', handleAvatarSubmit);
 popupFormEdit.addEventListener('submit', handleUserInfoFormSubmit);

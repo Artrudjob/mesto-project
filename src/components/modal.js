@@ -1,4 +1,4 @@
-const profileEditPopup = document.querySelector('#popup-edit');
+/* const profileEditPopup = document.querySelector('#popup-edit');
 const popupAdd = document.querySelector('#popup-add');
 const popupFormAdd = document.querySelector('#popup-form-add');
 const popupAvatar = document.querySelector('#popup-avatar');
@@ -29,4 +29,4 @@ function clickClosePopupForm(event) {
       }
 }
 
-export { profileEditPopup, popupAdd, popupFormAdd, popupAvatar, popupDeleteCard, openPopup, closePopup, closeByKeyPopup, clickClosePopupForm };
+export { profileEditPopup, popupAdd, popupFormAdd, popupAvatar, popupDeleteCard, openPopup, closePopup, closeByKeyPopup, clickClosePopupForm }; */
