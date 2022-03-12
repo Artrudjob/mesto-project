@@ -45,6 +45,7 @@ import {
 import {
   PopupWithDel as PopupWithDel
 } from './PopupWithDel.js';
+
 //авторизация
 const api = new Api({
   baseUrl: 'https://nomoreparties.co/v1/plus-cohort-6/',
@@ -61,6 +62,7 @@ let removeLikeCard;
 const formValidatorAvatar = new FormValidator(avataPopup, validationConfig);
 const formValidatorEdit = new FormValidator(profileEditPopup, validationConfig);
 const formValidatorAdd = new FormValidator(addCardPopup, validationConfig);
+
 formValidatorAvatar.enableValidation();
 formValidatorEdit.enableValidation();
 formValidatorAdd.enableValidation();
@@ -77,6 +79,7 @@ Promise.all(initialData)
 //фото во весь экран
 const popupWithImage = new PopupWithImage(imagePopup);
 popupWithImage.setEventListeners();
+
 const openImagePopup = (evt) => {
   const data = {
     image: evt.target.src,
@@ -129,6 +132,7 @@ const userInfo = new UserInfo({
   profileName,
   profileCareer,
   profileAvatar
+
 });
 const editPopup = new PopupWithForm(profileEditPopup, {
   formSubmitCallBack: (data, button) => {
@@ -152,6 +156,7 @@ profileEditBtn.addEventListener("click", () => {
   profileCareerInput.value = data.job;
   editPopup.open();
 });
+
 //редактирование фото профиля
 const avatarEdit = new PopupWithForm(avataPopup, {
   formSubmitCallBack: (data, button) => {
