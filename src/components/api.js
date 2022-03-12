@@ -1,4 +1,4 @@
-class Api {
+export class Api {
     constructor(options) {
         this._baseUrl = options.baseUrl;
         this._headers = options.headers;
@@ -19,7 +19,7 @@ class Api {
             .then(res => this._checkResponse(res));
     }
 
-    getCards() {
+    getInitialCards() {
         this.getInfo();
         return fetch(`${this._baseUrl}cards`, {
                 headers: this._headers
@@ -27,35 +27,33 @@ class Api {
             .then(res => this._checkResponse(res));
     }
 
-    getAppInfo() {
-        return Promise.all([this.getInfo(), this.getCards()]);
-    }
 
-    sendInfo(myName, aboutMe) {
+
+    editProfile(data) {
         return fetch(`${this._baseUrl}users/me`, {
                 method: 'PATCH',
                 headers: this._headers,
                 body: JSON.stringify({
-                    name: myName,
-                    about: aboutMe
+                    name: data[0],
+                    about: data[1]
                 })
             })
             .then(res => this._checkResponse(res));
     }
 
-    addNewCard(namePlace, placeLink) {
+    addNewCard(card) {
         return fetch(`${this._baseUrl}cards`, {
                 method: 'POST',
                 headers: this._headers,
                 body: JSON.stringify({
-                    name: namePlace,
-                    link: placeLink
+                    name: card[0],
+                    link: card[1],
                 })
             })
             .then(res => this._checkResponse(res));
     }
 
-    deleteUserCard(id) {
+    deleteCard(id) {
         return fetch(`${this._baseUrl}cards/${id}`, {
                 method: 'DELETE',
                 headers: this._headers
@@ -79,7 +77,7 @@ class Api {
             .then(res => this._checkResponse(res));
     }
 
-    updateAvatarUser(imgLink) {
+    editAvatar(imgLink) {
         return fetch(`${this._baseUrl}/users/me/avatar`, {
                 method: 'PATCH',
                 headers: this._headers,
@@ -89,16 +87,4 @@ class Api {
             })
             .then(res => this._checkResponse(res));
     }
-}
-
-const api = new Api({
-    baseUrl: 'https://nomoreparties.co/v1/plus-cohort-6/',
-    headers: {
-        authorization: 'c6ea2481-28ed-4e6a-9bbe-85a531661bf0',
-        'Content-Type': 'application/json'
-    }
-});
-
-export {
-    api
 }

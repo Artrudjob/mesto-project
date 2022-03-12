@@ -1,39 +1,30 @@
-import { api } from './Api.js';
-
-export class UserInfo{
-    constructor(selectorsInfoData) {
-        this._name = selectorsInfoData.userName;
-        this._about = selectorsInfoData.userAbout;
-
-        this._userNameField = document.querySelector('#user-name-field');
-        this._userCareerField = document.querySelector('#user-career-field');
-        this._popupBtnSave = document.querySelector('#save-button');
+export class UserInfo {
+    constructor({
+        profileName,
+        profileCareer,
+        profileId,
+        profileAvatar
+    }) {
+        this._name = profileName;
+        this._job = profileCareer;
+        this._profileId = profileId;
+        this._profileAvatar = profileAvatar;
     }
 
     getUserInfo() {
-        return api.getInfo()
-            .then((result) => {
-                this._name.textContent = result.name;
-                this._about.textContent = result.about;
-            })    
-            .catch(err => console.log(`Что-то пошло не так: ${err}`))    
+        const userInfo = {
+            name: this._name.textContent,
+            job: this._job.textContent,
+        };
+        return userInfo;
     }
 
-    setUserInfo(name, about, methodClose) {
-        api.sendInfo(name, about)
-            .then(() => {
-                const nameValue = name;
-                const careerValue = about;
-                this._userNameField.value = nameValue;
-                this._userCareerField.value = careerValue;
-                methodClose;
-            })
-            .catch(err => console.log(`Что-то пошло не так: ${err}`))
-            .finally(() => {
-                this._popupBtnSave.textContent = 'Сохранить';
-              })
-        this.getUserInfo();
+    setUserInfo(userInfo) {
+        this._name.textContent = userInfo.name;
+        this._job.textContent = userInfo.about;
+    }
+
+    setUserAvatar(data) {
+        this._profileAvatar.src = data.avatar;
     }
 }
-
-

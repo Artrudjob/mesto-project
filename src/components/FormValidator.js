@@ -58,7 +58,6 @@ export class FormValidator {
     };
 
     //Переключение состояния кнопки
-
     _toggleButtonState() {
         //Если есть хотя бы 1 инвалидный инпут
         if (this._hasInvalidInput(this._inputList)) {
@@ -70,7 +69,7 @@ export class FormValidator {
         }
     };
 
-    _setEventListeners() 
+    _setEventListeners() {
         this._inputList.forEach(inputElement => {
             inputElement.addEventListener('input', () => {
                 this._checkInputValidity(inputElement);
