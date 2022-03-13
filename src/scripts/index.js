@@ -11,15 +11,11 @@ import {
   profileCareer,
   profileName,
   profileAvatar,
-  cardTemplate,
   imagePopup,
   profileNameInput,
   profileCareerInput,
   profileAddBtn,
   cardsContainer,
-  popupBtnCreate,
-  popupBtnSave,
-  popupAvatarBtnSave
 } from './components/constants.js'
 import {
   Api

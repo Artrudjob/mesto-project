@@ -20,9 +20,6 @@ export const profileCareerInput = profileEditPopup.querySelector('#user-career-f
 export const profileEditBtn = document.querySelector('.profile__edit');
 export const profileAvatarBtn = document.querySelector('.profile__avatar-edit');
 export const profileAddBtn = document.querySelector('.profile__add');
-export const popupBtnCreate = document.querySelector('#create-button');
-export const popupBtnSave = document.querySelector('#save-button');
-export const popupAvatarBtnSave = document.querySelector('#save-avatar-btn');
 //popups
 export const addCardPopup = document.querySelector("#popup-add");
 export const avataPopup = document.querySelector('#popup-avatar');
