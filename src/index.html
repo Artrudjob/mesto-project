@@ -45,7 +45,7 @@
         <form class="popup__form" id="popup-form-avatar" name="profile-avatar" novalidate>
           <h2 class="popup__title">Обновить аватар</h2>
           <fieldset class="popup__flex-container">
-            <input class="popup__edit" type="url" name="user-avatar" placeholder="Ссылка на аватар"
+            <input class="popup__edit" type="url" name="userAvatar" placeholder="Ссылка на аватар"
               id="user-avatar-field" required>
             <span class="popup__edit-error user-avatar-field-error"></span>
             <button class="popup__save-btn" type="submit" name="save-avatar" id="save-avatar-btn">Сохранить</button>
@@ -59,10 +59,10 @@
         <form class="popup__form" id="popup__form-id" name="profile-form" novalidate>
           <h2 class="popup__title">Редактировать профиль</h2>
           <fieldset class="popup__flex-container">
-            <input class="popup__edit" type="text" name="user-name" placeholder="Имя" id="user-name-field" minlength="2"
+            <input class="popup__edit" type="text" name="userName" placeholder="Имя" id="user-name-field" minlength="2"
               maxlength="40" required>
             <span class="popup__edit-error user-name-field-error"></span>
-            <input class="popup__edit" type="text" name="user-career" placeholder="Профессиональная деятельность"
+            <input class="popup__edit" type="text" name="userCareer" placeholder="Профессиональная деятельность"
               id="user-career-field" minlength="2" maxlength="200" required>
             <span class="popup__edit-error user-career-field-error"></span>
             <button class="popup__save-btn" type="submit" name="save-btn" id="save-button">Сохранить</button>
@@ -76,10 +76,10 @@
         <form class="popup__form" name="profile-form" id="popup-form-add" novalidate>
           <h2 class="popup__title">Новое место</h2>
           <fieldset class="popup__flex-container">
-            <input class="popup__edit" type="text" name="user-name" placeholder="Название" id="img-name-field"
+            <input class="popup__edit" type="text" name="cardName" placeholder="Название" id="img-name-field"
               minlength="2" maxlength="30" required>
             <span class="popup__edit-error img-name-field-error"></span>
-            <input class="popup__edit" type="url" name="user-career" placeholder="Ссылка на картинку"
+            <input class="popup__edit" type="url" name="cardLink" placeholder="Ссылка на картинку"
               id="img-link-field" required>
             <span class="popup__edit-error img-link-field-error"></span>
             <button class="popup__save-btn" type="submit" name="save-btn" id="create-button">Создать</button>

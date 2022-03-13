@@ -30,12 +30,13 @@ export class Api {
 
 
     editProfile(data) {
+        console.log(data.userName, data.userCareer);
         return fetch(`${this._baseUrl}users/me`, {
                 method: 'PATCH',
                 headers: this._headers,
                 body: JSON.stringify({
-                    name: data[0],
-                    about: data[1]
+                    name: data.userName,
+                    about: data.userCareer
                 })
             })
             .then(res => this._checkResponse(res));
@@ -46,8 +47,8 @@ export class Api {
                 method: 'POST',
                 headers: this._headers,
                 body: JSON.stringify({
-                    name: card[0],
-                    link: card[1],
+                    name: card.cardName,
+                    link: card.cardLink
                 })
             })
             .then(res => this._checkResponse(res));
@@ -82,7 +83,7 @@ export class Api {
                 method: 'PATCH',
                 headers: this._headers,
                 body: JSON.stringify({
-                    avatar: `${imgLink}`
+                    avatar: `${imgLink.userAvatar}`
                 })
             })
             .then(res => this._checkResponse(res));

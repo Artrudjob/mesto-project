@@ -183,7 +183,7 @@ profileAvatarBtn.addEventListener("click", () => {
 const addNewCardPopup = new PopupWithForm(addCardPopup, {
   formSubmitCallBack: (data) => {
     const card = data
-    api.addNewCard(card)
+    api.addNewCard(data)
       .then((res) => {
         section.addItem(createCard(res), true);
         addNewCardPopup.close();
