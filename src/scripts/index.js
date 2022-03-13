@@ -20,31 +20,31 @@ import {
   popupBtnCreate,
   popupBtnSave,
   popupAvatarBtnSave
-} from './constants.js'
+} from './components/constants.js'
 import {
   Api
-} from './Api.js';
+} from './components/Api.js';
 import {
   FormValidator
-} from './FormValidator.js';
+} from './components/FormValidator.js';
 import {
   UserInfo
-} from './UserInfo.js';
+} from './components/UserInfo.js';
 import {
   Card,
-} from './Сard.js';
+} from './components/Сard.js';
 import {
   PopupWithImage
-} from './PopupWithImage.js';
+} from './components/PopupWithImage.js';
 import {
   PopupWithForm
-} from './PopupWithForm.js';
+} from './components/PopupWithForm.js';
 import {
   Section
-} from './Section.js';
+} from './components/Section.js';
 import {
   PopupWithDel as PopupWithDel
-} from './PopupWithDel.js';
+} from './components/PopupWithDel.js';
 
 //авторизация
 const api = new Api({
