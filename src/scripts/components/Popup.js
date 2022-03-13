@@ -13,19 +13,16 @@ export class Popup {
   }
   _handleOverlayClose(evt) {
     if (evt.target.classList.contains('popup')) {
-      this._popupElement.classList.remove('popup_opened');
-      Array.from(document.querySelectorAll('.popup__form')).forEach(form => {
-        form.reset();
-        this.close();
-      })
-      }
+      this.close();
+    }
   }
   setEventListeners(evt) {
     this._popupCloseButton.addEventListener("click", () => {
       this.close();
     });
 
-    this._popupElement.addEventListener("mousedown", (evt) => {this._handleOverlayClose(evt);
+    this._popupElement.addEventListener("mousedown", (evt) => {
+      this._handleOverlayClose(evt);
 
     });
   }
@@ -34,8 +31,6 @@ export class Popup {
     this._popupElement.classList.add("popup_opened");
   }
   close() {
-    document.removeEventListener("click", () => {this.close()});
-    document.removeEventListener("click", (evt) => {this._handleOverlayClose(evt)});
     document.removeEventListener("keyup", this._handleEscClose);
     this._popupElement.classList.remove("popup_opened");
   }
