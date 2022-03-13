@@ -6,6 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Mesto</title>
 </head>
+
 <body class="page">
   <div class="page__container">
     <header class="header page__header">
@@ -14,7 +15,8 @@
     <main>
       <section class="profile page__profile">
         <div class="profile__column-main">
-          <img class="profile__avatar" src="<%=require('./images/jak-iv-kusto.jpg')%>" alt="Жак-Ив Кусто в красной шапке на фоне моря.">
+          <img class="profile__avatar" src="<%=require('./images/jak-iv-kusto.jpg')%>"
+            alt="Жак-Ив Кусто в красной шапке на фоне моря.">
           <div class="profile__avatar-edit"></div>
           <div class="profile__info">
             <h1 class="profile__name">Жак-Ив Кусто</h1>
@@ -28,7 +30,7 @@
       </section>
       <section class="popup" id="popup-img">
         <div class="popup__container-img">
-          <button class="popup__exit-img" type="button" aria-label="Close" name="exit-btn-img"></button>
+          <button class="popup__exit" type="button" aria-label="Close" name="exit-btn-img"></button>
           <img class="popup__img">
           <h2 class="popup__name"></h2>
         </div>
@@ -43,7 +45,8 @@
         <form class="popup__form" id="popup-form-avatar" name="profile-avatar" novalidate>
           <h2 class="popup__title">Обновить аватар</h2>
           <fieldset class="popup__flex-container">
-            <input class="popup__edit" type="url" name="user-avatar" placeholder="Ссылка на аватар" id="user-avatar-field" required>
+            <input class="popup__edit" type="url" name="userAvatar" placeholder="Ссылка на аватар"
+              id="user-avatar-field" required>
             <span class="popup__edit-error user-avatar-field-error"></span>
             <button class="popup__save-btn" type="submit" name="save-avatar" id="save-avatar-btn">Сохранить</button>
           </fieldset>
@@ -56,9 +59,10 @@
         <form class="popup__form" id="popup__form-id" name="profile-form" novalidate>
           <h2 class="popup__title">Редактировать профиль</h2>
           <fieldset class="popup__flex-container">
-            <input class="popup__edit" type="text" name="user-name" placeholder="Имя" id="user-name-field" minlength="2" maxlength="40" required>
+            <input class="popup__edit" type="text" name="userName" placeholder="Имя" id="user-name-field" minlength="2"
+              maxlength="40" required>
             <span class="popup__edit-error user-name-field-error"></span>
-            <input class="popup__edit" type="text" name="user-career" placeholder="Профессиональная деятельность"
+            <input class="popup__edit" type="text" name="userCareer" placeholder="Профессиональная деятельность"
               id="user-career-field" minlength="2" maxlength="200" required>
             <span class="popup__edit-error user-career-field-error"></span>
             <button class="popup__save-btn" type="submit" name="save-btn" id="save-button">Сохранить</button>
@@ -72,10 +76,11 @@
         <form class="popup__form" name="profile-form" id="popup-form-add" novalidate>
           <h2 class="popup__title">Новое место</h2>
           <fieldset class="popup__flex-container">
-            <input class="popup__edit" type="text" name="user-name" placeholder="Название" id="img-name-field" minlength="2" maxlength="30" required>
+            <input class="popup__edit" type="text" name="cardName" placeholder="Название" id="img-name-field"
+              minlength="2" maxlength="30" required>
             <span class="popup__edit-error img-name-field-error"></span>
-            <input class="popup__edit" type="url" name="user-career" placeholder="Ссылка на картинку"
-            id="img-link-field" required>
+            <input class="popup__edit" type="url" name="cardLink" placeholder="Ссылка на картинку"
+              id="img-link-field" required>
             <span class="popup__edit-error img-link-field-error"></span>
             <button class="popup__save-btn" type="submit" name="save-btn" id="create-button">Создать</button>
           </fieldset>
@@ -84,26 +89,28 @@
     </section>
     <section class="popup" id="popup-delete-card">
       <div class="popup__container">
-        <button class="popup__exit" type="button" aria-label="Close" name="exit-btn"></button>
-        <h2 class="popup__title popup__title_position">Вы уверены?</h2>
-        <button class="popup__delete-btn" type="button" name="delete-card" id="delete-button">Да</button>  
+        <form class="popup__form" name="delete-form">
+          <button class="popup__exit" type="button" aria-label="Close" name="exit-btn" id="popup-exit-del-btn"></button>
+          <h2 class="popup__title popup__title_position">Вы уверены?</h2>
+          <button class="popup__delete-btn" type="submit" name="delete-card" id="delete-button">Да</button>
+        </form>
       </div>
-    </section> 
-  </div> 
+    </section>
+  </div>
   <template id="card">
-    <div class="card"> 
-      <img class="card__image" alt="Загруженное изображение"> 
-      <div class="card__flex-column"> 
-        <h2 class="card__text"></h2> 
+    <div class="card card-item">
+      <img class="card__image" alt="Загруженное изображение">
+      <div class="card__flex-column">
+        <h2 class="card__text"></h2>
         <div class="card__likes-box">
           <button class="card__heart" type="button" name="like-heart"></button>
-          <p class="card__number-likes"></p> 
-        </div> 
-      <!--  <button class="card__heart" type="button" name="like-heart"></button>
+          <p class="card__number-likes"></p>
+        </div>
+        <!--  <button class="card__heart" type="button" name="like-heart"></button>
       <p class="card__number-likes">1</p> -->
-      </div> 
-      <button class="card__trash-bin" type="button" name="delete-img"></button> 
-    </div> 
+      </div>
+      <button class="card__trash-bin" type="button" name="delete-img"></button>
+    </div>
   </template>
 </body>
 

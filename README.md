@@ -27,4 +27,6 @@ npm run dev
 ```
 ## developers
 [Артем Руденко](https://github.com/Artrudjob/)
+ArtrudJob@yandex.ru
 [Игорь Шокин](https://github.com/ShockIgorek)
+shokin1996@yandex.ru
