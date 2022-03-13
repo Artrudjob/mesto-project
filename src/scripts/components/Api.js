@@ -30,7 +30,6 @@ export class Api {
 
 
     editProfile(data) {
-        console.log(data.userName, data.userCareer);
         return fetch(`${this._baseUrl}users/me`, {
                 method: 'PATCH',
                 headers: this._headers,

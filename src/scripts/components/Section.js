@@ -1,9 +1,9 @@
 export class Section {
     constructor({
         renderItems
-    }, containerSelector) {
+    }, container) {
         this._renderer = renderItems;
-        this._container = containerSelector;
+        this._container = container;
     }
     renderItems(items) {
         items.forEach((item) => {

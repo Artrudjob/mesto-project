@@ -94,7 +94,7 @@ const popupWithDel = new PopupWithDel(deletePopup, {
         data.card.remove()
         popupWithDel.close();
       })
-      .catch((err) => console.log(err)).finally(popupWithDel.close())
+      .catch((err) => console.log(err))
   },
 });
 popupWithDel.setEventListeners();
@@ -144,9 +144,9 @@ const editPopup = new PopupWithForm(profileEditPopup, {
       })
       .catch((err) => console.log(err))
       .finally(() => {
-        popupBtnSave.textContent = 'Сохранить';
+        button.textContent = 'Сохранить';
       });
-    popupBtnSave.textContent = 'Сохранение...';
+    button.textContent = 'Сохранение...';
   },
 });
 editPopup.setEventListeners();
@@ -169,9 +169,9 @@ const avatarEdit = new PopupWithForm(avataPopup, {
       })
       .catch((err) => console.log(err))
       .finally(() => {
-        popupAvatarBtnSave.textContent = 'Сохранить';
+        button.textContent = 'Сохранить';
       });
-    popupAvatarBtnSave.textContent = 'Сохранение...';
+      button.textContent = 'Сохранение...';
 
   },
 });
@@ -181,8 +181,7 @@ profileAvatarBtn.addEventListener("click", () => {
 });
 //Попап добавления карточки
 const addNewCardPopup = new PopupWithForm(addCardPopup, {
-  formSubmitCallBack: (data) => {
-    const card = data
+  formSubmitCallBack: (data, button) => {
     api.addNewCard(data)
       .then((res) => {
         section.addItem(createCard(res), true);
@@ -191,9 +190,9 @@ const addNewCardPopup = new PopupWithForm(addCardPopup, {
       })
       .catch((err) => console.log(err))
       .finally(() => {
-        popupBtnCreate.textContent = 'Создать';
+        button.textContent = 'Создать';
       });
-    popupBtnCreate.textContent = 'Создание...';
+      button.textContent = 'Создание...';
   },
 });
 addNewCardPopup.setEventListeners();
